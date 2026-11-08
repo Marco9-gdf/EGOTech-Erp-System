@@ -13,7 +13,9 @@
     "client": "npm run dev --workspace=client",
     "seed": "npm run seed --workspace=server",
     "build": "cd client && npm run build",
-    "build:client": "cd client && npm run build"
+    "build:client": "cd client && npm run build",
+    "build:render": "npm install && cd client && npm install && npm run build && cd ..",
+    "serve": "node server/src/index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

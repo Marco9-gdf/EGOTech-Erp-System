@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import db, { initDatabase } from './config/database.js';
 
 import authRoutes from './routes/authRoutes.js';
@@ -334,6 +337,20 @@ app.get('/api/email-logs', authenticateToken, (req, res) => {
   const logs = getEmailLogs(companyId);
   res.json({ logs });
 });
+
+// Serve compiled React frontend if present (Render, Railway, production full-stack deployment)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDistPath = path.resolve(__dirname, '../../client/dist');
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/receipts')) {
+      return next();
+    }
+    res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
 
 // Error Handler
 app.use((err, req, res, next) => {
