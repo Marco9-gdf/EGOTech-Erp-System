@@ -1,5 +1,6 @@
 {
   "name": "payroll-and-attendance-system",
+  "private": true,
   "version": "1.0.0",
   "description": "Full-Stack Payroll and Attendance Management System",
   "type": "module",

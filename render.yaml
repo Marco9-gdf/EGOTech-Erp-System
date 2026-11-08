@@ -3,7 +3,7 @@ services:
     name: egotech-erp
     runtime: node
     plan: free
-    buildCommand: npm run build:render
+    buildCommand: npm install && npm run build:render
     startCommand: node server/src/index.js
     envVars:
       - key: NODE_VERSION
