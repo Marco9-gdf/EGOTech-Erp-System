@@ -12,8 +12,15 @@ export const DEMO_CREDENTIALS = {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('payroll_user');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('payroll_user');
+      if (!saved || saved === 'undefined' || saved === 'null') return null;
+      return JSON.parse(saved);
+    } catch (e) {
+      console.warn('Could not parse saved user from localStorage:', e);
+      try { localStorage.removeItem('payroll_user'); } catch (_) {}
+      return null;
+    }
   });
   const [token, setToken] = useState(() => localStorage.getItem('payroll_token') || null);
   const [loading, setLoading] = useState(true);
