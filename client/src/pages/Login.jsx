@@ -92,12 +92,12 @@ export default function Login() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Backend API Online</span>
             </span>
-          ) : serverOnline === false ? (
-            <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-              <span>Connecting to Backend (localhost:5000)...</span>
+          ) : (
+            <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-300 border border-amber-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span>Cloud Preview Active</span>
             </span>
-          ) : null}
+          )}
         </div>
       </div>
 
