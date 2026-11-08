@@ -438,6 +438,3 @@ export function getShifts(req, res) {
     res.status(500).json({ error: 'Failed to get shifts.' });
   }
 }
-    res.status(500).json({ error: 'Failed to get shifts.' });
-  }
-}
